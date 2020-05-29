@@ -5,34 +5,34 @@
 #                                                                            #
 # A re-analysis of the US and Hugarian WAIS IV correlation matrices          #
 #                                                                            #
-# In Psychonetrics                                                           #
-#  - an explicit saturated model is fitted                                   #
-#  - the WAIS-IV measurement model is fitted                                 #
-#  - a 2nd order g model is fitted                                           #
-#  - McFarland's bifactor model is fitted                                    #
-#  - networks extracted by qgraph are being cross-validated                  #
+# In Psychonetrics we fitted                                                 #
+#  - the WAIS-IV measurement model                                           #
+#  - a 2nd order g model                                                     #
+#  - a bifactor model                                                        #
+#  - a networks extracted from the US standardization sample                 #
 #                                                                            #
 # Author: Kees-Jan Kan                                                       #
 #                                                                            #
 ##############################################################################
 
+
+# ------------- Preparation
+
 # clear work space, not run
 rm(list = ls())
-
-# install development version of psychonetrics
-# devtools::install_github("sachaepskamp/psychonetrics")
 
 # load required R packages
 library( "psychonetrics" )
 library( "qgraph"        )
 library( "dplyr"         )
-library( "lavaan"        )
 
-# read in data
-con <- url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_Hungary.Rdata?raw=true" )
-load( con )
-con <- url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" )
-load( con )
+
+# ------------- Read in the data
+
+# WAIS correlation matrix in the US standardization sample
+load( url ( "https://github.com/KJKan/mcfarland/blob/master/WAIS_Hungary.Rdata?raw=true" ) )
+# WAIS correlation matrix in the Hungarian standardization sample
+load( url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" ) )
 
 # sample sizes
 n_US      <- 1800 
@@ -44,7 +44,11 @@ yvars <- colnames( WAIS_US )
 # number of observed variables
 ny <- length( yvars )
 
-# ------------- Build the factor models
+
+
+# ------------- Build the statistical models
+
+# - Theoretical model
 
 # latent constructs to be measured (etas)
 lvars <- c( 
@@ -65,13 +69,13 @@ lambda <- matrix( c (
                       0, 0, 1, 0, # DS
                       1, 0, 0, 0, # MR
                       0, 1, 0, 0, # VC
-                      0, 0, 1, 0, # AR # 0, 1, 1, 0
+                      0, 0, 1, 0, # AR 
                       0, 0, 0, 1, # SS
                       1, 0, 0, 0, # VP
                       0, 1, 0, 0, # IN
                       0, 0, 0, 1, # CD
                       0, 0, 1, 0, # LN
-                      0, 0, 1, 0, # FW # 1, 0, 1, 0 
+                      0, 0, 1, 0, # FW  
                       0, 1, 0, 0, # CO
                       0, 0, 0, 1, # CA
                       1, 0, 0, 0  # PC
@@ -81,69 +85,100 @@ lambda <- matrix( c (
                   dimnames = list( yvars, lvars ) 
                   )
 
-# build the measurement model (see WAIS-IV manual, Figure 5.2)
-# the contains two additional (cross-)loadings as compared to the theoretical model
+
+
+# --- Measurement model (see WAIS-IV manual, Figure 5.2)
+
+# this model contains two additional (cross-)loadings as compared to the theoretical model
 lambda_measurement          <- lambda
-lambda_measurement[  6, 2 ] <- 1 # WM indicator Arithmetic on the Verbal factor
+lambda_measurement[  6, 2 ] <- 1 # Working Memory indicator Arithmetic on the Verbal factor
 lambda_measurement[ 12, 1 ] <- 1 # Speed indicator Figure Weights on the Perceptual factor
 
-measurementModel <- lvm( covs = ( n_US - 1 )/n_US*WAIS_US, 
+measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary, 
                          lambda = lambda_measurement,
-                         nobs = n_US,
+                         nobs = n_Hungary,
                          identification = "variance" )
 
-# build a second order g factor model
+
+# --- Second order g factor model
+
 # this model explains the covariance structure among the measured constructs
+# by adding one more latent variable, g
 lambda_g               <- cbind( lambda_measurement, g = 0 )
 beta_g                 <- cbind( matrix( 0, ne + 1, ne + 1 ) ) 
 beta_g[ 1:ne, ne + 1 ] <- 1
 
-gModel    <- lvm( covs = ( n_US - 1 )/n_US*WAIS_US, 
+gModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary, 
                   lambda = lambda_g, 
                   beta = beta_g,
                   sigma_zeta = 'empty',
-                  nobs = n_US,
+                  nobs = n_Hungary,
                   identification = "variance" )
 
 
-# build a bifactor model 
+# --- Bifactor model 
+
 # this model describes the variance covariance among the observed variables
 # by decomposing their variance into general, specific, and shared components
 lambda_bifactor    <- cbind( lambda, g = 1 )
 
-bifactorModel    <- lvm( covs = ( n_US - 1 )/n_US*WAIS_US, 
+bifactorModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary, 
                          lambda = lambda_bifactor, 
                          sigma_zeta = 'empty',
-                         nobs = n_US,
+                         nobs = n_Hungary,
                          identification = "variance" )
 
-# build a network model
-# estimate the partial correlation matrix from data set i
-saturatedModel_i <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
-                         omega = "Full",
-                         nobs = n_US )
 
-# remove insignificant edges
-prunedModel <- saturatedModel_i %>% prune( alpha = 0.01, recursive = TRUE )
+# --- Network model
 
-# aim for further improvement
-model_stepup <- prunedModel %>% stepup
+# this model will be extracted from the US sample, using the following steps
 
-# extract the adjacency matrix
-adjacency <- 1*( getmatrix( model_stepup, "omega" ) !=0 )
+# estimate the partial correlation matrix from the US sample correlation matrix
+saturatedModel_US <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
+                          omega = "Full",
+                          nobs = n_US )
 
-# use this matrix to estimate the network in another data set (j)
-nwModel <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
+# remove insignificant partial correlations ('edges')
+prunedModel <- saturatedModel_US %>% prune( alpha = 0.01, recursive = TRUE )
+
+# aim for further improvement of the model
+finalModel  <- prunedModel %>% stepup
+
+# extract the skeleton (adjacency matrix)
+adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
+
+# use the skeleton to estimate the parameters in the Hungarian data
+nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                 omega = adjacency,
-                nobs = n_US )
+                nobs = n_Hungary )
 
-# the saturated model (defined as network model)
-saturatedModel_j <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
-                         omega = "Full",
-                         nobs = n_US )
 
-# run all models
-results_saturatedModel   <- saturatedModel_j %>% runmodel
+# --- Saturated models (defined as network models, so partial correlation matrices)
+
+# US
+saturatedModel_US <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
+                              omega = "Full",
+                              nobs = n_US )
+
+# Hungary
+saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
+                          omega = "Full",
+                          nobs = n_Hungary )
+
+
+# ------------- Fit statistics for the US network model
+
+results_saturatedModel_US   <- saturatedModel_US %>% runmodel
+results_nwModel_US          <- finalModel        %>% runmodel
+
+compare( saturated   = results_saturatedModel_US,
+         network     = results_nwModel_US )
+
+
+
+# ------------- Fit the factor and network models in the Hungarian sample
+
+results_saturatedModel   <- saturatedModel   %>% runmodel
 results_measurementModel <- measurementModel %>% runmodel
 results_bifactorModel    <- bifactorModel    %>% runmodel
 results_gModel           <- gModel           %>% runmodel
@@ -156,8 +191,11 @@ compare( saturated   = results_saturatedModel,
          gmodel      = results_gModel,
          network     = results_nwModel )
 
-# plot the network model (the winner)
-qgraph( getmatrix( model_stepup, "omega" ), 
+
+
+# ------------- Plot the network model (the winner)
+
+qgraph( getmatrix( nwModel, "omega" ), 
         labels = yvars,
         groups = list( Perceptual    = which( lambda[ , 1 ] == 1 ),
                        Verbal        = which( lambda[ , 2 ] == 1 ),
