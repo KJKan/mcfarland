@@ -52,38 +52,38 @@ ny <- length( yvars )
 
 # latent constructs to be measured (etas)
 lvars <- c( 
-            "P", # Perceptual
-            "V", # Verbal
-            "W", # Working Memory
-            "S"  # Speed
-            )
+  "P", # Perceptual
+  "V", # Verbal
+  "W", # Working Memory
+  "S"  # Speed
+)
 
 # number latent constructs to be measured
 ne <- length( lvars )
 
 # theoretical pattern of factor loadings
 lambda <- matrix( c (
-                     #P  V  W  S   
-                      1, 0, 0, 0, # BD
-                      0, 1, 0, 0, # SI
-                      0, 0, 1, 0, # DS
-                      1, 0, 0, 0, # MR
-                      0, 1, 0, 0, # VC
-                      0, 0, 1, 0, # AR 
-                      0, 0, 0, 1, # SS
-                      1, 0, 0, 0, # VP
-                      0, 1, 0, 0, # IN
-                      0, 0, 0, 1, # CD
-                      0, 0, 1, 0, # LN
-                      0, 0, 1, 0, # FW  
-                      0, 1, 0, 0, # CO
-                      0, 0, 0, 1, # CA
-                      1, 0, 0, 0  # PC
-                     ), 
-                  ncol = ne, 
-                  byrow = TRUE,
-                  dimnames = list( yvars, lvars ) 
-                  )
+  #P  V  W  S   
+  1, 0, 0, 0, # BD
+  0, 1, 0, 0, # SI
+  0, 0, 1, 0, # DS
+  1, 0, 0, 0, # MR
+  0, 1, 0, 0, # VC
+  0, 0, 1, 0, # AR 
+  0, 0, 0, 1, # SS
+  1, 0, 0, 0, # VP
+  0, 1, 0, 0, # IN
+  0, 0, 0, 1, # CD
+  0, 0, 1, 0, # LN
+  0, 0, 1, 0, # FW  
+  0, 1, 0, 0, # CO
+  0, 0, 0, 1, # CA
+  1, 0, 0, 0  # PC
+), 
+ncol = ne, 
+byrow = TRUE,
+dimnames = list( yvars, lvars ) 
+)
 
 
 
@@ -157,8 +157,8 @@ nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 # US
 saturatedModel_US <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
-                              omega = "Full",
-                              nobs = n_US )
+                          omega = "Full",
+                          nobs = n_US )
 
 # Hungary
 saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
@@ -184,16 +184,27 @@ results_bifactorModel    <- bifactorModel    %>% runmodel
 results_gModel           <- gModel           %>% runmodel
 results_nwModel          <- nwModel          %>% runmodel
 
-# obtain their fit statistics
+# print their fit statistics
+fit( results_saturatedModel )
+fit( results_measurementModel )
+fit( results_bifactorModel )
+fit( results_gModel )
+fit( results_nwModel )
+
 compare( saturated   = results_saturatedModel,
-         measurement = results_measurementModel, 
-         bifactor    = results_bifactorModel,
-         gmodel      = results_gModel,
+         measurement = results_measurementModel )
+
+compare( saturated   = results_saturatedModel,
+         bifactor    = results_bifactorModel )
+
+compare( saturated   = results_saturatedModel,
+         gmodel      = results_gModel )
+
+compare( saturated   = results_saturatedModel,
          network     = results_nwModel )
 
 
-
-# ------------- Plot the network model (the winner)
+# ------------- Plot the network model 
 
 qgraph( getmatrix( nwModel, "omega" ), 
         labels = yvars,
@@ -202,5 +213,4 @@ qgraph( getmatrix( nwModel, "omega" ),
                        WorkingMemory = which( lambda[ , 3 ] == 1 ),
                        Speed         = which( lambda[ , 4 ] == 1 )),
         layout = "spring" )
-
 
