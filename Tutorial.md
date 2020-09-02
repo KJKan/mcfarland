@@ -235,7 +235,7 @@ saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                           nobs = n_Hungary )
 ```
 
-# Fitting the models
+# Fit the models, obtain their fit statistics, and compare these statistics 
 
 By the way, this is how we run models in Psychonetrics:
 
@@ -286,7 +286,7 @@ compare( saturated   = results_saturatedModel,
 
 According to standard fit criteria ()Schermelleh et al), we would conclude that the network model fits best.
 
-# Plot
+# Plot the favored model, which is the network model
 
 This is how this model looks like
 
