@@ -2,23 +2,23 @@
 
 This is a short tutorial on how to compare latent factor models and psychomentric network models using the R package Psychonetrics.
 
-The tutorial accompanies the paper Kan, KJ, de Jonge, H, van der Maas, HLJ, Levine, SZ, & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychomentric Network Models. A comment on McFarland                                   #
+The tutorial accompanies the paper Kan, KJ, de Jonge, H, van der Maas, HLJ, Levine, SZ, & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. A comment on McFarland. Journal of Intelligence.                                    #
 
-We illustrate how a network can be extracted from the one sample and fitted on another sample. In other words we illustrate how to test if a network replicates.
+We illustrate 
+- how a network can be extracted from the data from one sample and fitted on the data of another sample. In other words, we illustrate how to test if a network replicates.
+- the statistics of that network can be compared to the fit statistics of (various) factor models. 
 
-The data concern WAIS US data and WAIS Hungary data.  
-
-Next we illustrate how the statistics of that network can be compared to the fit statistics of (various) factor models. 
-
-These include:
+Factor models considered are:
 - a measurement model                                           
 - a 2nd order g model                                                    
 - a bifactor model                                                       
-- a networks extracted from the US standardization sample                
+- a networks extracted from the US standardization sample  
+
+The data concern WAIS US data and WAIS Hungary data.  
 
 # Preparation
 
-Let's clear our workspace first (only run if you really want that)
+Let's clear our workspace first (only run this line if you really want that)
 
 ```{r}
 # clear work space, not run
@@ -26,7 +26,7 @@ rm(list = ls())
 
 ```
 
-Next to package Psychonetrics, we need to load a few more packages, e.g. to make a plot of the networks.
+Next to package Psychonetrics, we load a few more packages, needed e.g. to make a plot of the networks.
 
 ```{r}
 # load required R packages
@@ -35,7 +35,7 @@ library( "qgraph"        )
 library( "dplyr"         )
 ```
 
-Of course we also need our data, the US and Hungarian WAIS correlation matrices
+Of course we also need our data, the US and Hungarian WAIS correlation matrices, so let's read them in
 
 ```{r}
 # WAIS correlation matrix in the US standardization sample
@@ -52,14 +52,14 @@ n_US      <- 1800
 n_Hungary <- 1112 
 ```
 
-For our information, what variables were actually measured?
+For our information, what variables doies the WAIS assess?
 
 ```{r}
 # observed variables
 ( yvars <- colnames( WAIS_US ) )
 ```
 
-Ok, so how many variables are that?
+Ok, so how many variables are that exactly?
 
 ```{r}
 # number of observed variables
@@ -69,11 +69,11 @@ ny <- length( yvars )
 
 # Build the statistical models
 
-Now we 'know' our data, let's start with the rela job, building the network and latent variable models
+Now we 'know' our data, let's start with the real job, building the our statistical models.
 
 ## Theoretical model
 
-Theoretically speaking the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
+Theoretically speaking, the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
 
 ```{r}
 # latent constructs to be measured (etas)
@@ -119,9 +119,11 @@ dimnames = list( yvars, lvars )
 )
 ```
 
-Theory is theory, they say. In practice, some indicators indicate more than one latent variable, see for example the WAIS-IV manual, Figure 5.2.
+"Theory is theory", they say. This also holds for the WAIS theretical factor model. 
 
-The WAIS-IV measurement model is therefore actually slightly different from the theoretical model. It contains two additional factor loadings.
+In practice, some indicators indicate more than one latent variable, see for example the WAIS-IV manual, Figure 5.2. The Working Memory Capacity indicator Arithmetic also loads on the factor Verbal Ability, while Speed indicator Figure Weights laods on the Perceptual factor.
+
+The so-called WAIS-IV 'measurement model' thus differs (slightly)from the theoretical model. (It contains two additional factor loadings.)
 
 ```{r}
 # this model contains two additional (cross-)loadings as compared to the theoretical model
@@ -130,10 +132,12 @@ lambda_measurement[  6, 2 ] <- 1 # Working Memory indicator Arithmetic on the Ve
 lambda_measurement[ 12, 1 ] <- 1 # Speed indicator Figure Weights on the Perceptual factor
 ```
 
-Now we know how the measurement model looks like, we can define it in Psychonetrics using the function lvm (which stands for 'latent variable model').
+Now we know how the measurement model looks like, we can ask ourselves how to define it in Psychonetrics? 
+
+The answer is: use function lvm (which stands for 'latent variable model').
 
 The input of lvm is 
-- a data matrix, in our case we want to analyze a correlation matrix, which is covariance matrix (in standardized form); covs
+- a data matrix; in our case we want to analyze a correlation matrix, which is covariance matrix (in standardized form); covs
 - the pattern of factor loadings; in LISREL notation this matrix is termed lambda
 - the number of observations - obs - which is the numbe rof participants in the sample
 - how to identify the model, e.g. by standardizing the latent variances
@@ -145,9 +149,9 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                          identification = "variance" )
 ```
 
-According to g theory these latent variables correlate positively because they all depend on a common source of variance, g. In the statistical model, the representation of g is a general factor.   
+According to g theory the measured latent variables correlate positively because they all depend on a common source of variance, that is g. In the statistical model, g is represented by a general factor.   
 
-Let's build this model - the second order g factor model
+Let's build this g model (termed the 'second order g factor model')
 
 
 ```{r}
