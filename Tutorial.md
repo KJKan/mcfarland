@@ -64,28 +64,28 @@ n_US      <- 1800
 n_Hungary <- 1112 
 ```
 
-For our information, what variables does the WAIS assess?
+For our information, what variables does the WAIS-IV assess?
 
 ```{r}
 # observed variables
 ( yvars <- colnames( WAIS_US ) )
 ```
 
-Block Design (BD)
-Similarities (SI)
-Digit Span (DS)
-Matrix Reasoning (MR or MA)
-Vocabulary (VC or VO)
-Arithmetic (AR) 
-Symbol Search (SS)
-Visual Puzzles (VP) 
-Information (IN)
-Coding (CO)
-Letter Number Sequencing (LN)
-Figure Weights (FW)
-Comprehension (CO)
-Cancellation (CA)
-Picture Completion (PC)
+- Block Design (BD)
+- Similarities (SI)
+- Digit Span (DS)
+- Matrix Reasoning (MR or MA)
+- Vocabulary (VC or VO)
+- Arithmetic (AR) 
+- Symbol Search (SS)
+- Visual Puzzles (VP) 
+- Information (IN)
+- Coding (CO)
+- Letter Number Sequencing (LN)
+- Figure Weights (FW)
+- Comprehension (CO)
+- Cancellation (CA)
+- Picture Completion (PC)
 
 So 16 in total.
 
@@ -98,7 +98,7 @@ So 16 in total.
 
 In theory, the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
 
-![](https://raw.githubusercontent.com/KJKan/mcfarland/master/TheoreticalModel.jpg)
+
 
 ```{r}
 # latent constructs to be measured (etas)
@@ -143,6 +143,10 @@ byrow = TRUE,
 dimnames = list( yvars, lvars ) 
 )
 ```
+
+So graphically, the model looks like this:
+
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/TheoreticalModel.jpg)
 
 # Build the statistical models <a name="Building"></a>
 
