@@ -7,71 +7,68 @@
      - [g Model](#gModel)
      - [Bifactor Model](#BiModel)
 - [Network Model](#Network)
-     - [Extract a Network Model]
+     - [Exploratory Network Analysis](#Extract)
 - [Fit the models (confirmatively) and compare the fit statistics](#Fits)
-- [Plot the favored model](Plot)
+     - [Confirmatory Factor Analysis](FitFactorModels)
+     - [Confirmatory Network Analysis](FitNetworkModel)
+- [Conclusion](#Conclusion)
+
 
 # How to Compare Latent Factor Models and Psychometric Network Models <a name="Intro"></a>
 
 This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
 
-The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. A comment on McFarland. *Journal of Intelligence*.
+The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. In Memory of John Dennis McFarland. *Journal of Intelligence*.
 
-We illustrate here
-- How a network can be extracted from the data from one sample and fitted on the data of another sample. 
-     - In other words, we test if a gieven network replicates in a second sample.
-- How the statistics of that network can be compared to the fit statistics of (various) factor models. 
+We illustrate here hoe
+-  A network can be extracted from the data from one sample and fitted on the data of another sample. 
+     - In other words, we provide the means how to test if a given network *replicates*
+- The fit statistics of that network can be compared witj the fit statistics of (various) factor models. 
 
-Factor models fitted are those that were considered by McFarland (2020):
+The gactor models being fitted are those that were considered by McFarland (2020):
 - A measurement model                                           
 - A (second order) g model                                                    
 - A bifactor model                                                       
 
-The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 referred to).  
+The data concern WAIS US data and WAIS Hungary data. These were used in the network analyses of Kan, van der Maas and Levine (2019) and Schmank et al. (2019), to which McFarland (2020) referred to.  
 
 # Preparation <a name="Preparation"></a>
 
-Let's clear our workspace first (run this line only if you really want that)
+Let's clear our workspace first (run this line only if you really want that; you will lose everything you had in the workspace)
 
 ```{r}
-# clear work space, not run
 rm(list = ls())
-
 ```
 
 Next to package Psychonetrics, we load a few more packages, needed to make a plot of the networks, for instance.
 
 ```{r}
-# load required R packages
 library( "psychonetrics" )
-library( "qgraph"        )
-library( "dplyr"         )
+library( "qgraph" )
+library( "dplyr" )
 ```
 
 We also need our data, the US and Hungarian WAIS correlation matrices, so let's read them in.
 
 ```{r}
-# US sample
 load( url ( "https://github.com/KJKan/mcfarland/blob/master/WAIS_Hungary.Rdata?raw=true" ) )
-# Hungarian sample
 load( url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" ) )
 ```
 
 According to the WAIS manuals, these are the sample sizes:
 
 ```{r} 
-# sample sizes
 n_US      <- 1800 
 n_Hungary <- 1112 
 ```
 
-For our information, what variables does the WAIS-IV assess?
+For our information, what variables does the WAIS-IV assess again?
 
 ```{r}
-# observed variables
 ( yvars <- colnames( WAIS_US ) )
 ```
 
+These are:
 - Block Design (BD)
 - Similarities (SI)
 - Digit Span (DS)
@@ -88,18 +85,15 @@ For our information, what variables does the WAIS-IV assess?
 - Cancellation (CA)
 - Picture Completion (PC)
 
-So 16 in total.
+So 16 in total. Let's store that information.
 
 ```{r}
-# number of observed variables
-( ny <- length( yvars ) )
+ny <- length( yvars ) 
 ```
 
 # WAIS-IV Factor Theoretical Model of Intelligence <a name="TheoreticalModel"></a>
 
 In theory, the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
-
-
 
 ```{r}
 # latent constructs to be measured (etas)
@@ -111,13 +105,15 @@ lvars <- c(
 )
 ```
 
-So, that's 4 latent variables
+So, that's 4 latent variables. Let's store that information again.
 ```{r}
-# number latent constructs to be measured
-( ne <- length( lvars ) )
+ne <- length( lvars ) 
 ```
+So graphically, the model looks like this:
 
-They are indexed (measured) by the 16 subtests as follows:
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/TheoreticalModel.jpg)
+
+So apparently, the latent variables are indexed (measured) as follows:
 
 ```{r}
 # theoretical pattern of factor loadings
@@ -145,42 +141,39 @@ dimnames = list( yvars, lvars )
 )
 ```
 
-So graphically, the model looks like this:
-
-![](https://raw.githubusercontent.com/KJKan/mcfarland/master/TheoreticalModel.jpg)
-
 # Build the statistical models <a name="Building"></a>
 
 ## Measurement Model <a name="Measurement"></a>
 
-"Theory is theory", they say. In theory, the WAIS measures 4 unidimensional latent factors, but in practice unidimensionality does not hold, at least for some measures.  
+"Theory is theory", they say. The WAIS-IV ought aims to measures 4 unidimensional latent factors, but in practice unidimensionality does not hold, at least for some measures.  
 - Working Memory Capacity indicator Arithmetic also loads on the factor Verbal Ability.
 - Speed indicator Figure Weights also loads on the Perceptual factor.
 
-The WAIS-IV measurement model thus deviates a little from the theoretical model. 
+The WAIS-IV measurement model thus deviates somewhat from the theoretical model. 
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg)
 
+Henxe, the pattern of loadings is:
+
 ```{r}
-# this model contains two additional (cross-)loadings as compared to the theoretical model
 lambda_measurement          <- lambda
 lambda_measurement[  6, 2 ] <- 1 # Working Memory indicator Arithmetic on the Verbal factor
 lambda_measurement[ 12, 1 ] <- 1 # Speed indicator Figure Weights on the Perceptual factor
 ```
 
-Now we have established how the measurement model looks like, we can ask ourselves how to define this model in Psychonetrics. 
+Now we know how the measurement model looks like, we can ask ourselves how to define this model in Psychonetrics. 
 
-It's quite easy, with the function lvm (which stands for 'latent variable model').
+It's quite easy: With the function lvm (which stands for 'latent variable model').
 
 The input of lvm is 
 - a data matrix; in our case we want to analyze a correlation matrix, which is covariance matrix (in standardized form)
-    - covs
+    - argument 'covs'
 - the pattern of factor loadings; in LISREL notation, this matrix is termed lambda
-    - lambda
+    - argument 'lambda'
 - the number of observations, so the number of participants in the sample,
-    - nobs
+    - argument 'nobs'
 - the way we choose to identify the model, e.g. by standardizing the latent variances
-    - identification
+    - argument 'identification'
 
 ```{r}
 measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary, 
@@ -191,12 +184,13 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 ## g Model <a name="gModel"></a>
 
-According to g theory the measured latent variables correlate positively because they all depend on a common source of variance, that is 'g'. In the statistical model, g is represented by the most general factor.   
+According to *g* theory the measured latent variables correlate positively because they all depend on a common source of variance, that is '*g*'. In the statistical model, *g* is represented by the most general factor.   
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/SecondOrdergModel.jpg)
 
-Let's build this g model (termed the 'second order g factor model'). The matrix beta defines how the latent variables in the measurement model are influenced by g.
-g hitself has no indicators (i.e. measured variables that load on it).
+Let's build this *g* model (which we termed the 'second order g factor model'). 
+The matrix beta defines how the latent variables in the measurement model are influenced by *g*.
+Note that *g* itself has no indicators (i.e. measured variables that load on it).
 
 
 ```{r}
@@ -214,13 +208,17 @@ gModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 ## Bifactor Model <a name="BiModel"></a>
 
-In the alternative model, the bifactor model, measures are not unidimensional, and would indicate g directly. Note that this goes against g theory (Jensen, 1998), in which it is stated g itself is not a cognitive ability itself. 
+Often, a bifactor model is considered an alternative for the second order *g* factor model. 
+Note that the bifactor model implies tha:
+- none of the cognitive ability measures are unidimensional
+- *g* has direct indicators
+     - this goes against g theory (Jensen, 1998), in which it is stated *g* itself is not a cognitive ability itself. 
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel.jpg)
 
-The model can also be considered a means to simply decompose the variance of a variable into variance components of course.  
+However, the model can also be considered simply as a means to decompose the variance of a variable into variance components. In that sense, there is nothing wrong with it. 
 
-Anyhow, this is how the model looks like in Psychonetrics.
+Anyhow, this is how the bifactor model looks like in Psychonetrics.
 
 
 ```{r}
@@ -235,15 +233,13 @@ bifactorModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 # Network Model <a name="Network"></a>
 
-For the WAIS we could also come up with a model.
+For the WAIS we could also come up with a psychometric network model, in line with the mutualism model of van der Maas et al. (2006), for example.
 
-Let's extracted one from the US sample
+Let's extracted one from the US sample data.
 
 ## Extract a Network Model (Exploratory Network Analysis ) <a name="Extract"></a>
 
-This entails we first estblish the partial correlation matrix from the US sample correlation matrix
-
-Note: this can be considered a saturated model as it is nothing more than a rediscription of the correlation matrix.
+We first establish the partial correlation matrix.
 
 ```{r}
 saturatedModel_US <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
@@ -251,34 +247,33 @@ saturatedModel_US <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
                           nobs = n_US )
 ```
 
-More interesting is of course a more sparse network model that explains this structure.
+Next we remove those partial correlations that are insignificant or are deemed spurious. This process of removing is called 'pruning'.
 
-Therefore we remove partial correlations that are insignificant or are spurious. This process is called pruning.
+We take $\alpha$ $0.01$.
                           
 ```{r}
-# remove insignificant partial correlations ('edges')
 prunedModel <- saturatedModel_US %>% prune( alpha = 0.01, recursive = TRUE )
 
 # aim for further improvement of the model
 finalModel  <- prunedModel %>% stepup
 ```
 
-The sketelon can be considered 'the network' that is to be fitted (confirmatory) in the Hungarian sample
+The 'skeleton' or 'adjacency matrix' can be considered 'the network', which we aim to be fit (truly confirmatory) in the Hungarian sample. 
+It contains which edges are present (1) and which are absent (0).
 
 ```{r}
-# extract the skeleton (adjacency matrix)
 adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
 ```
 
 # Fit the models, obtain their fit statistics, and compare these statistics <a name="Fits"></a>
 
-Now we have established how all our models look like, let's fit them (in a different sample).
+Now we have established how all our models look like, let's fit them (in a different sample than we extracted the network from).
 
 ## Saturated model
 
-By the way, we can first establish a saturated model (explicitly), in which all other models are nested.
+Or wait, we can first establish a saturated model (explicitly), in which all other models are nested.
 
-The satured model can parametrisized as a partial correlation matrix. This shows factor models are nested within network models. Paths are constrained by the mediating effects of the latent variables. 
+We can parameterisize it as the partial correlation matrix. This shows factor models are actually nested within network models. Paths are constrained by the mediating effects of the latent variables. 
 
 ```{r}
 saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
@@ -286,7 +281,7 @@ saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                           nobs = n_Hungary )
 ```
 
-This is how we would 'run' the model:
+In psychonetrics, this is how we would 'run' a model, the saturated model in this case:
 
 ```{r}
 results_saturatedModel   <- saturatedModel   %>% runmodel
@@ -294,7 +289,7 @@ results_saturatedModel   <- saturatedModel   %>% runmodel
 
 ## Factor models
 
-So let's run all factor models
+Let's run all factor models first.
 
 ```{r}
 results_measurementModel <- measurementModel %>% runmodel
@@ -309,7 +304,7 @@ fit( results_measurementModel )
 fit( results_bifactorModel )
 fit( results_gModel )
 ```
-And (or) compare
+And (or) function compare()
 
 ```{r}
 compare( saturated   = results_saturatedModel,
@@ -321,9 +316,9 @@ compare( saturated   = results_saturatedModel,
 
 ```
 
-# use the skeleton to estimate the parameters in the Hungarian data
+## Network model
 
-let's also run the network model (on the same data). Remember that we stored the network in object 'adjacency'. 
+Now let's do the same for the network model. (Recall that we stored this in the object 'adjacency'. 
 
 ```{r}
 nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
@@ -332,22 +327,22 @@ nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 results_nwModel <- nwModel %>% runmodel
 
-```
-
-And obtain the fit statistics.
-
-```{r}
 fit( results_gModel )
 
 compare( saturated   = results_saturatedModel,
          network     = results_nwModel )
 ```        
+# Conclusion <a name="Conclusion"></a>
+
+According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best:
+- The RMSEA, TLI, and CFI, for example, point at excellent fit absolute fit. 
+- In addition, it has the lowest AIC and BIC
+     - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
+     - So if we had to choose between the network interpretation of general intelligence or g theory, we would favor the network interpretation
 
 # Plot the favored model <a name="Plot"></a>
 
-According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best.
-
-Let's plot it!
+Let's plot our favored model!
 
 ```{r}
 qgraph( getmatrix( nwModel, "omega" ), 
