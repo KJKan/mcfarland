@@ -1,4 +1,16 @@
-# How to Compare Latent Factor Models and Psychometric Network Models 
+# Table of Contents
+- [How to Compare Latent Factor Models and Psychometric Network Models](#Intro)
+- [Preparation](#Preparation)
+- [WAIS-IV Factor Theoretical Model of Intelligence](#TheoreticalModel)  
+- [Statistical models](#Building)
+     - [Measurement Model](#Measurement)
+     - [g Model](#gModel)
+     - [Bifactor Model](#BiModel)
+     - [Network Model](#Network)
+- [Fit the models, obtain their fit statistics, and compare these statistics](#Fits)
+- [Plot the favored model](Plot)
+
+# How to Compare Latent Factor Models and Psychometric Network Models <a name="Intro"></a>
 
 This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
 
@@ -16,7 +28,7 @@ Factor models fitted are those that were considered by McFarland (2020):
 
 The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 referred to).  
 
-# Preparation
+# Preparation <a name="Preparation"></a>
 
 Let's clear our workspace first (run this line only if you really want that)
 
@@ -82,12 +94,7 @@ So 16 in total.
 ( ny <- length( yvars ) )
 ```
 
-
-# Build the statistical models
-
-Now we know how our data looks like, let's start with the real job, building our statistical models.
-
-## Theoretical model
+# WAIS-IV Factor Theoretical Model of Intelligence <a name="TheoreticalModel"></a>
 
 In theory, the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
 
@@ -137,11 +144,15 @@ dimnames = list( yvars, lvars )
 )
 ```
 
-"Theory is theory", they say. This also holds for the WAIS theoretical factor model. 
+# Build the statistical models <a name="Building"></a>
 
-In practice, some indicators turn out to indicate more than one latent variable, see for example the WAIS-IV manual, Figure 5.2. In addition to Working Memory Capacity Arithmetic also loads on the factor Verbal Ability; In addition to Speed Figure Weights loads also laods on the Perceptual factor.
+## Measurement Model <a name="Measurement"></a>
 
-The so-called WAIS-IV 'measurement model' thus differs (slightly)from the theoretical model. (It contains two additional factor loadings.)
+"Theory is theory", they say. In theory, the WAIS measures 4 unidimensional latent factors, but in practice unidimensionality does not hold, at least for some measures.  
+- Working Memory Capacity indicator Arithmetic also loads on the factor Verbal Ability.
+- Speed indicator Figure Weights also loads on the Perceptual factor.
+
+The WAIS-IV measurement model thus deviates a little from the theoretical model. 
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg)
 
@@ -173,6 +184,8 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                          identification = "variance" )
 ```
 
+## g Model <a name="gModel"></a>
+
 According to g theory the measured latent variables correlate positively because they all depend on a common source of variance, that is 'g'. In the statistical model, g is represented by the most general factor.   
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/SecondOrdergModel.jpg)
@@ -194,6 +207,8 @@ gModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                   identification = "variance" )
 ```
 
+## Bifactor Model <a name="BiModel"></a>
+
 In the alternative model, the bifactor model, measures are not unidimensional, and would indicate g directly. Note that this goes against g theory (Jensen, 1998), in which it is stated g itself is not a cognitive ability itself. 
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel.jpg)
@@ -212,6 +227,8 @@ bifactorModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                          nobs = n_Hungary,
                          identification = "variance" )
 ```
+
+## Network Model <a name="Network"></a>
 
 For the WAIS we could also come up with a model.
 
@@ -260,7 +277,7 @@ saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                           nobs = n_Hungary )
 ```
 
-# Fit the models, obtain their fit statistics, and compare these statistics 
+# Fit the models, obtain their fit statistics, and compare these statistics <a name="Fits"></a>
 
 By the way, this is how we run models in Psychonetrics:
 
@@ -309,11 +326,11 @@ compare( saturated   = results_saturatedModel,
   
   ```        
 
-According to standard fit criteria ()Schermelleh et al), we would conclude that the network model fits best.
+According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best.
 
-# Plot the favored model, which is the network model
+# Plot the favored model <a name="Plot"></a>
 
-This is how this model looks like
+This is how our favored model, i.e. the network modle, looks like:
 
 ```{r}
 qgraph( getmatrix( nwModel, "omega" ), 
