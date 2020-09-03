@@ -308,3 +308,5 @@ qgraph( getmatrix( nwModel, "omega" ),
                        Speed         = which( lambda[ , 4 ] == 1 )),
         layout = "spring" )
 ```
+
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/NetworkModel.jpg)
