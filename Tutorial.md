@@ -157,7 +157,7 @@ The WAIS-IV measurement model thus deviates somewhat from the theoretical model.
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg)
 
-Henxe, the pattern of loadings is:
+Hence, the pattern of loadings is:
 
 ```{r}
 lambda_measurement          <- lambda
