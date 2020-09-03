@@ -3,7 +3,7 @@
 ## Table of content
 - [Introduction](#Intro)
 - [Preparation](#Preparation)
-- [WAIS-IV Factor Theoretical Model of Intelligence](#TheoreticalModel)  
+- [(WAIS-IV) Factor Theoretical Model of Intelligence](#TheoreticalModel)  
 - [Statistical Factor Models](#Building)
      - [Measurement Model](#Measurement)
      - [Second order *g* Model](#gModel)
@@ -95,7 +95,7 @@ So 16 in total. Let's store that information.
 ny <- length( yvars ) 
 ```
 
-# WAIS-IV Factor Theoretical Model of Intelligence <a name="TheoreticalModel"></a>
+# (WAIS-IV) Factor Theoretical Model of Intelligence <a name="TheoreticalModel"></a>
 
 In theory, the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
 
@@ -241,7 +241,7 @@ For the WAIS we could also come up with a psychometric network model, in line wi
 
 Let's extracted one from the US sample data.
 
-## Extract a Network Model (Exploratory Network Analysis ) <a name="Extract"></a>
+## Exploratory Network Analysis <a name="Extract"></a>
 
 We first establish the partial correlation matrix.
 
