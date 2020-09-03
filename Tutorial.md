@@ -14,8 +14,9 @@
      - [Explicit Saturated Model](SaturatedModel)
      - [Confirmatory Factor Modeling](FitFactorModels)
      - [Confirmatory Network Modeling](FitNetworkModel)
+- [Results](Results)
 - [Conclusion](#Conclusion)
-     - [Plot the Favored Model](#plot)
+ 
 
 
 # Introduction <a name="Intro"></a>
@@ -348,7 +349,7 @@ qgraph( getmatrix( nwModel, "omega" ),
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/NetworkModel.jpg)
 
-# Results
+# Results  <a name="Results"></a>
 
 Here is a collection of the results:
 
