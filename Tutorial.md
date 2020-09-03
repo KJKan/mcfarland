@@ -1,20 +1,20 @@
 # How to Compare Latent Factor Models and Psychometric Network Models 
 
-This is a short tutorial on how to compare latent factor models and psychomentric network models using the R package Psychonetrics.
+This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
 
 The tutorial accompanies the paper Kan, KJ, de Jonge, H, van der Maas, HLJ, Levine, SZ, & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. A comment on McFarland. Journal of Intelligence.                                    #
 
 We illustrate 
-- how a network can be extracted from the data from one sample and fitted on the data of another sample. 
-     - In other words, we illustrate how to test if a network replicates.
-- the statistics of that network can be compared to the fit statistics of (various) factor models. 
+- How a network can be extracted from the data from one sample and fitted on the data of another sample. 
+     - In other words, we test if a network replicates.
+- How the statistics of that network can be compared to the fit statistics of (various) factor models. 
 
-Factor models considered are:
-- a measurement model                                           
-- a 2nd order g model                                                    
-- a bifactor model                                                       
+Factor models fitted are those that were considered by McFarland (2020):
+- A measurement model                                           
+- A (second order) g model                                                    
+- A bifactor model                                                       
 
-The data concern WAIS US data and WAIS Hungary data.  
+The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 refreeerd to).  
 
 # Preparation
 
