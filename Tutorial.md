@@ -24,12 +24,12 @@ This is a short tutorial on how to compare latent factor models and psychometric
 
 The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. In Memory of John Dennis McFarland. *Journal of Intelligence*.
 
-We illustrate here hoe
+We illustrate here how
 -  A network can be extracted from the data from one sample and fitted on the data of another sample. 
      - In other words, we provide the means how to test if a given network *replicates*
 - The fit statistics of that network can be compared witj the fit statistics of (various) factor models. 
 
-The gactor models being fitted are those that were considered by McFarland (2020):
+The factor models being fitted are those that were considered by McFarland (2020):
 - A measurement model                                           
 - A (second order) g model                                                    
 - A bifactor model                                                       
