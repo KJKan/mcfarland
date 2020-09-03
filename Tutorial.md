@@ -1,3 +1,9 @@
+title: "Latent Factor Models and Psychometric Network Models"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+
 # How to Compare Latent Factor Models and Psychometric Network Models 
 
 This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
