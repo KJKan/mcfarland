@@ -14,9 +14,9 @@ Factor models fitted are those that were considered by McFarland (2020):
 - A (second order) g model                                                    
 - A bifactor model                                                       
 
-The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 refreeerd to).  
+The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 referred to).  
 
-```{r echo = FALSE, out.width = "80%", fig.align = "center" }
+```{r out.width = "80%", fig.align = "center" }
 
 knitr::include_graphics("https://github.com/KJKan/mcfarland/blob/master/MeasurementModel.jpg")
 
