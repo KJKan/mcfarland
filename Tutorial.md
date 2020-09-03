@@ -1,4 +1,7 @@
-- [How to Compare Latent Factor Models and Psychometric Network Models](#Intro)
+# How to Compare Latent Factor Models and Psychometric Network Models, a Tutorial
+
+## Table of content
+- [Introduction](#Intro)
 - [Preparation](#Preparation)
 - [WAIS-IV Factor Theoretical Model of Intelligence](#TheoreticalModel)  
 - [Statistical Factor Models](#Building)
@@ -15,7 +18,7 @@
      - [Plot the Favored Model](#plot)
 
 
-# How to Compare Latent Factor Models and Psychometric Network Models <a name="Intro"></a>
+# Introduction <a name="Intro"></a>
 
 This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
 
