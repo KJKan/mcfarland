@@ -249,7 +249,7 @@ saturatedModel_US <- ggm( covs = ( n_US - 1 )/n_US*WAIS_US,
 
 Next we remove those partial correlations that are insignificant or are deemed spurious. This process of removing is called 'pruning'.
 
-We take $\alpha$ $0.01$.
+We take α = 0.01.
                           
 ```{r}
 prunedModel <- saturatedModel_US %>% prune( alpha = 0.01, recursive = TRUE )
