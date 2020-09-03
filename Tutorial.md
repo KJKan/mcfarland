@@ -18,7 +18,7 @@ The data concern WAIS US data and WAIS Hungary data (used in the network analyse
 
 ```{r out.width = "80%", fig.align = "center" }
 
-knitr::include_graphics("https://github.com/KJKan/mcfarland/blob/master/MeasurementModel.jpg")
+knitr::include_graphics("https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg")
 
 ```
 
