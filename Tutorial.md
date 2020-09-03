@@ -109,11 +109,11 @@ lvars <- c(
 )
 ```
 
-So, that's 4 latent variables. Let's store that information again.
+That's 4 latent variables. Let's store that information again.
 ```{r}
 ne <- length( lvars ) 
 ```
-So graphically, the model looks like this:
+Graphically, the model looks like this:
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/TheoreticalModel.jpg)
 
