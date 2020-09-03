@@ -2,16 +2,18 @@
 - [How to Compare Latent Factor Models and Psychometric Network Models](#Intro)
 - [Preparation](#Preparation)
 - [WAIS-IV Factor Theoretical Model of Intelligence](#TheoreticalModel)  
-- [Statistical Factor models](#Building)
+- [Statistical Factor Models](#Building)
      - [Measurement Model](#Measurement)
-     - [g Model](#gModel)
+     - [Second order *g* Model](#gModel)
      - [Bifactor Model](#BiModel)
-- [Network Model](#Network)
+- [Psychometric Network Model](#Network)
      - [Exploratory Network Analysis](#Extract)
 - [Fit the models (confirmatively) and compare the fit statistics](#Fits)
-     - [Confirmatory Factor Analysis](FitFactorModels)
-     - [Confirmatory Network Analysis](FitNetworkModel)
+     - [Explicit Saturated Model](SaturatedModel)
+     - [Confirmatory Factor Modeling](FitFactorModels)
+     - [Confirmatory Network Modeling](FitNetworkModel)
 - [Conclusion](#Conclusion)
+     - [Plot the Favored Model](#plot)
 
 
 # How to Compare Latent Factor Models and Psychometric Network Models <a name="Intro"></a>
@@ -141,7 +143,7 @@ dimnames = list( yvars, lvars )
 )
 ```
 
-# Build the statistical models <a name="Building"></a>
+# Statistical Factor Models <a name="Building"></a>
 
 ## Measurement Model <a name="Measurement"></a>
 
@@ -182,7 +184,7 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                          identification = "variance" )
 ```
 
-## g Model <a name="gModel"></a>
+## Second order *g* Model <a name="gModel"></a>
 
 According to *g* theory the measured latent variables correlate positively because they all depend on a common source of variance, that is '*g*'. In the statistical model, *g* is represented by the most general factor.   
 
@@ -231,7 +233,7 @@ bifactorModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                          identification = "variance" )
 ```
 
-# Network Model <a name="Network"></a>
+# Psychometric Network Model <a name="Network"></a>
 
 For the WAIS we could also come up with a psychometric network model, in line with the mutualism model of van der Maas et al. (2006), for example.
 
@@ -269,7 +271,7 @@ adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
 
 Now we have established how all our models look like, let's fit them (in a different sample than we extracted the network from).
 
-## Saturated model
+## Explicit Saturated Model
 
 Or wait, we can first establish a saturated model (explicitly), in which all other models are nested.
 
@@ -287,7 +289,7 @@ In psychonetrics, this is how we would 'run' a model, the saturated model in thi
 results_saturatedModel   <- saturatedModel   %>% runmodel
 ```
 
-## Factor models
+## Confirmatpry Factor Modeling
 
 Let's run all factor models first.
 
@@ -316,7 +318,7 @@ compare( saturated   = results_saturatedModel,
 
 ```
 
-## Network model
+## Confirmatory Network Modeling
 
 Now let's do the same for the network model. (Recall that we stored this in the object 'adjacency'. 
 
@@ -340,7 +342,7 @@ According to standard fit criteria (Schermelleh et al), we would conclude that t
      - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
      - So if we had to choose between the network interpretation of general intelligence or g theory, we would favor the network interpretation
 
-# Plot the favored model <a name="Plot"></a>
+## Plot the Favored Model <a name="Plot"></a>
 
 Let's plot our favored model!
 
