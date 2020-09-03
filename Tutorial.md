@@ -1,4 +1,3 @@
-# Table of Contents
 - [How to Compare Latent Factor Models and Psychometric Network Models](#Intro)
 - [Preparation](#Preparation)
 - [WAIS-IV Factor Theoretical Model of Intelligence](#TheoreticalModel)  
