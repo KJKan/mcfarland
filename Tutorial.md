@@ -291,7 +291,7 @@ In psychonetrics, this is how we would 'run' a model, the saturated model in thi
 results_saturatedModel   <- saturatedModel   %>% runmodel
 ```
 
-## Confirmatpry Factor Modeling
+## Confirmatory Factor Modeling
 
 Let's run all factor models first.
 
@@ -301,16 +301,13 @@ results_bifactorModel    <- bifactorModel    %>% runmodel
 results_gModel           <- gModel           %>% runmodel
 ```
 
-To obtain their fit statistics one can use the function fit() 
+To obtain their fit statistics, one can use the function fit() and/or function compare()
 
 ```{r}
 fit( results_measurementModel )
 fit( results_bifactorModel )
 fit( results_gModel )
-```
-And (or) function compare()
 
-```{r}
 compare( saturated   = results_saturatedModel,
          measurement = results_measurementModel )
 compare( saturated   = results_saturatedModel,
@@ -322,7 +319,7 @@ compare( saturated   = results_saturatedModel,
 
 ## Confirmatory Network Modeling
 
-Now let's do the same for the network model. (Recall that we stored this in the object 'adjacency'. 
+Now let's do the same for the network model. (Recall that we stored the network model in the object 'adjacency'). 
 
 ```{r}
 nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
@@ -336,17 +333,8 @@ fit( results_gModel )
 compare( saturated   = results_saturatedModel,
          network     = results_nwModel )
 ```        
-# Conclusion <a name="Conclusion"></a>
 
-According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best:
-- The RMSEA, TLI, and CFI, for example, point at excellent fit absolute fit. 
-- In addition, it has the lowest AIC and BIC
-     - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
-     - So if we had to choose between the network interpretation of general intelligence or g theory, we would favor the network interpretation
-
-## Plot the Favored Model <a name="Plot"></a>
-
-Let's plot our favored model!
+Let's also provide a plot of this model
 
 ```{r}
 qgraph( getmatrix( nwModel, "omega" ), 
@@ -359,3 +347,18 @@ qgraph( getmatrix( nwModel, "omega" ),
 ```
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/NetworkModel.jpg)
+
+# Results
+
+Here is a collection of the results:
+
+HERE A TABLE WITH THE RESULTS
+
+# Conclusion <a name="Conclusion"></a>
+
+According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best:
+- The RMSEA, TLI, and CFI, for example, point at excellent fit absolute fit. 
+- In addition, it has the lowest AIC and BIC
+     - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
+     - So if we had to choose between the network interpretation of general intelligence or g theory, we would favor the network interpretation
+
