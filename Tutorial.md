@@ -2,11 +2,11 @@
 
 This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
 
-The tutorial accompanies the paper Kan, KJ, de Jonge, H, van der Maas, HLJ, Levine, SZ, & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. A comment on McFarland. Journal of Intelligence.                                    #
+The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. A comment on McFarland. *Journal of Intelligence*.
 
-We illustrate 
+We illustrate here
 - How a network can be extracted from the data from one sample and fitted on the data of another sample. 
-     - In other words, we test if a network replicates.
+     - In other words, we test if a gieven network replicates in a second sample.
 - How the statistics of that network can be compared to the fit statistics of (various) factor models. 
 
 Factor models fitted are those that were considered by McFarland (2020):
@@ -18,7 +18,7 @@ The data concern WAIS US data and WAIS Hungary data (used in the network analyse
 
 # Preparation
 
-Let's clear our workspace first (only run this line if you really want that)
+Let's clear our workspace first (run this line only if you really want that)
 
 ```{r}
 # clear work space, not run
@@ -35,7 +35,7 @@ library( "qgraph"        )
 library( "dplyr"         )
 ```
 
-Of course we also need our data, the US and Hungarian WAIS correlation matrices, so let's read them in
+We also need our data, the US and Hungarian WAIS correlation matrices, so let's read them in.
 
 ```{r}
 # US sample
@@ -59,7 +59,23 @@ For our information, what variables does the WAIS assess?
 ( yvars <- colnames( WAIS_US ) )
 ```
 
-So how many in total? (16)
+Block Design (BD)
+Similarities (SI)
+Digit Span (DS)
+Matrix Reasoning (MR or MA)
+Vocabulary (VC or VO)
+Arithmetic (AR) 
+Symbol Search (SS)
+Visual Puzzles (VP) 
+Information (IN)
+Coding (CO)
+Letter Number Sequencing (LN)
+Figure Weights (FW)
+Comprehension (CO)
+Cancellation (CA)
+Picture Completion (PC)
+
+So 16 in total.
 
 ```{r}
 # number of observed variables
