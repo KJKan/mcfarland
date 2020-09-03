@@ -16,7 +16,7 @@ Factor models fitted are those that were considered by McFarland (2020):
 
 The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 referred to).  
 
-![Measurement Model](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg
+![Measurement Model](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg)
 
 # Preparation
 
