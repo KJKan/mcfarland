@@ -16,8 +16,6 @@ Factor models fitted are those that were considered by McFarland (2020):
 
 The data concern WAIS US data and WAIS Hungary data (used in the network analyses of Kan, van der Maas & Levine, 2019 and Schmank et al. 2019, to which McFarland, 2020 referred to).  
 
-![Measurement Model](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg)
-
 # Preparation
 
 Let's clear our workspace first (only run this line if you really want that)
@@ -77,6 +75,8 @@ Now we know how our data looks like, let's start with the real job, building our
 
 In theory, the WAIS measures the following latent variables, Verbal ability, Perceptual Organization, Working Memory Capacity, and Cognitive Speed.
 
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/TheoreticalModel.jpg)
+
 ```{r}
 # latent constructs to be measured (etas)
 lvars <- c( 
@@ -127,6 +127,8 @@ In practice, some indicators turn out to indicate more than one latent variable,
 
 The so-called WAIS-IV 'measurement model' thus differs (slightly)from the theoretical model. (It contains two additional factor loadings.)
 
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/MeasurementModel.jpg)
+
 ```{r}
 # this model contains two additional (cross-)loadings as compared to the theoretical model
 lambda_measurement          <- lambda
@@ -157,6 +159,8 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 According to g theory the measured latent variables correlate positively because they all depend on a common source of variance, that is 'g'. In the statistical model, g is represented by the most general factor.   
 
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/SecondOrdergModel.jpg)
+
 Let's build this g model (termed the 'second order g factor model'). The matrix beta defines how the latent variables in the measurement model are influenced by g.
 g hitself has no indicators (i.e. measured variables that load on it).
 
@@ -176,9 +180,12 @@ gModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 In the alternative model, the bifactor model, measures are not unidimensional, and would indicate g directly. Note that this goes against g theory (Jensen, 1998), in which it is stated g itself is not a cognitive ability itself. 
 
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel.jpg)
+
 The model can also be considered a means to simply decompose the variance of a variable into variance components of course.  
 
-Anyhow, this is how the model looks like in psychonetrics.
+Anyhow, this is how the model looks like in Psychonetrics.
+
 
 ```{r}
 lambda_bifactor    <- cbind( lambda, g = 1 )
