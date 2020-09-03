@@ -2,12 +2,13 @@
 - [How to Compare Latent Factor Models and Psychometric Network Models](#Intro)
 - [Preparation](#Preparation)
 - [WAIS-IV Factor Theoretical Model of Intelligence](#TheoreticalModel)  
-- [Statistical models](#Building)
+- [Statistical Factor models](#Building)
      - [Measurement Model](#Measurement)
      - [g Model](#gModel)
      - [Bifactor Model](#BiModel)
-     - [Network Model](#Network)
-- [Fit the models, obtain their fit statistics, and compare these statistics](#Fits)
+- [Network Model](#Network)
+     - [Extract a Network Model]
+- [Fit the models (confirmatively) and compare the fit statistics](#Fits)
 - [Plot the favored model](Plot)
 
 # How to Compare Latent Factor Models and Psychometric Network Models <a name="Intro"></a>
@@ -232,11 +233,13 @@ bifactorModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                          identification = "variance" )
 ```
 
-## Network Model <a name="Network"></a>
+# Network Model <a name="Network"></a>
 
 For the WAIS we could also come up with a model.
 
 Let's extracted one from the US sample
+
+## Extract a Network Model (Exploratory Network Analysis ) <a name="Extract"></a>
 
 This entails we first estblish the partial correlation matrix from the US sample correlation matrix
 
@@ -260,81 +263,91 @@ prunedModel <- saturatedModel_US %>% prune( alpha = 0.01, recursive = TRUE )
 finalModel  <- prunedModel %>% stepup
 ```
 
-The sketelon of this matrix is to be fitted confirmatory in the Hungarian sample
+The sketelon can be considered 'the network' that is to be fitted (confirmatory) in the Hungarian sample
 
 ```{r}
 # extract the skeleton (adjacency matrix)
 adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
-
-# use the skeleton to estimate the parameters in the Hungarian data
-nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
-                omega = adjacency,
-                nobs = n_Hungary )
 ```
 
-Now we have established how all our models look like, let's fit them all (in the Hungarian sample) against the saturated model (of the Hungarian sample)
+# Fit the models, obtain their fit statistics, and compare these statistics <a name="Fits"></a>
+
+Now we have established how all our models look like, let's fit them (in a different sample).
+
+## Saturated model
+
+By the way, we can first establish a saturated model (explicitly), in which all other models are nested.
+
+The satured model can parametrisized as a partial correlation matrix. This shows factor models are nested within network models. Paths are constrained by the mediating effects of the latent variables. 
 
 ```{r}
-# Hungary
 saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
                           omega = "Full",
                           nobs = n_Hungary )
 ```
 
-# Fit the models, obtain their fit statistics, and compare these statistics <a name="Fits"></a>
-
-By the way, this is how we run models in Psychonetrics:
+This is how we would 'run' the model:
 
 ```{r}
-results_saturatedModel_US   <- saturatedModel_US %>% runmodel
-results_nwModel_US          <- finalModel        %>% runmodel
-```
-And this is how we can obtain some abslute and relative fit statistics
-
-```{r}
-
-fit( results_saturatedModel_US )
-fit( results_nwModel_US )
-
-compare( saturated   = results_saturatedModel_US,
-         network     = results_nwModel_US )
-```
-So let's do that for all models we aimed to fit in the Hungarian sample
-
-```{r}
-
 results_saturatedModel   <- saturatedModel   %>% runmodel
+```
+
+## Factor models
+
+So let's run all factor models
+
+```{r}
 results_measurementModel <- measurementModel %>% runmodel
 results_bifactorModel    <- bifactorModel    %>% runmodel
 results_gModel           <- gModel           %>% runmodel
-results_nwModel          <- nwModel          %>% runmodel
+```
 
-# print their fit statistics
-fit( results_saturatedModel )
+To obtain their fit statistics one can use the function fit() 
+
+```{r}
 fit( results_measurementModel )
 fit( results_bifactorModel )
 fit( results_gModel )
-fit( results_nwModel )
+```
+And (or) compare
 
+```{r}
 compare( saturated   = results_saturatedModel,
          measurement = results_measurementModel )
-
 compare( saturated   = results_saturatedModel,
          bifactor    = results_bifactorModel )
-
 compare( saturated   = results_saturatedModel,
          gmodel      = results_gModel )
 
+```
+
+# use the skeleton to estimate the parameters in the Hungarian data
+
+let's also run the network model (on the same data). Remember that we stored the network in object 'adjacency'. 
+
+```{r}
+nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
+                omega = adjacency,
+                nobs = n_Hungary )
+
+results_nwModel <- nwModel %>% runmodel
+
+```
+
+And obtain the fit statistics.
+
+```{r}
+fit( results_gModel )
+
 compare( saturated   = results_saturatedModel,
          network     = results_nwModel )
-  
-  ```        
-
-According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best.
+```        
 
 # Plot the favored model <a name="Plot"></a>
 
-This is how our favored model, i.e. the network modle, looks like:
+According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best.
+
+Let's plot it!
 
 ```{r}
 qgraph( getmatrix( nwModel, "omega" ), 
