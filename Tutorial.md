@@ -38,7 +38,7 @@ The factor models being fitted are those that were considered by McFarland (2020
 - A (second order) g model                                                    
 - A bifactor model                                                       
 
-The data concern WAIS US data and WAIS Hungary data. These were used in the network analyses of Kan, van der Maas and Levine (2019) and Schmank et al. (2019), to which McFarland (2020) referred to.  
+The data concern WAIS-IV US validation sample data and WAIS-IV Hungary validation sample data. These were used in the network analyses of Kan, van der Maas and Levine (2019) and Schmank et al. (2019), to which McFarland (2020) referred to.  
 
 # Preparation <a name="Preparation"></a>
 
@@ -70,7 +70,7 @@ n_US      <- 1800
 n_Hungary <- 1112 
 ```
 
-For our information, what variables does the WAIS-IV assess again?
+For our information, what variables does the WAIS-IV (Wechsler, 2008) assess again?
 
 ```{r}
 ( yvars <- colnames( WAIS_US ) )
@@ -387,3 +387,7 @@ McFarland, D. (2020). The Effects of Using Partial or Uncorrected Correlation Ma
 Schmank, C. J., Goring, S. A., Kovacs, K., & Conway, A. R. (2019). Psychometric network analysis of the Hungarian WAIS. *Journal of Intelligence, 7(3)*, 21.
 
 van Der Maas, H. L., Dolan, C. V., Grasman, R. P., Wicherts, J. M., Huizenga, H. M., & Raijmakers, M. E. (2006). A dynamical model of general intelligence: the positive manifold of intelligence by mutualism. *Psychological review, 113(4)*, 842.
+
+Wechsler, D. (2008). *Wechsler adult intelligence Scale–Fourth edition (WAIS–IV)*. San Antonio, TX: The Psychological Corporation.
+
+
