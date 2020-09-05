@@ -213,11 +213,11 @@ gModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 ## Bifactor Model <a name="BiModel"></a>
 
-Often, a bifactor model is considered an alternative for the second order *g* factor model. 
-Note that the bifactor model implies tha:
+Often a bifactor model is considered an alternative for the second order *g* factor model. 
+Note that the bifactor model implies that:
 - none of the cognitive ability measures are unidimensional
 - *g* has direct indicators
-     - this goes against g theory (Jensen, 1998), in which it is stated *g* itself is not a cognitive ability itself. 
+     - this goes against *g* theory (Jensen, 1998), in which it is stated *g* itself is not a cognitive ability itself. 
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel.jpg)
 
@@ -240,7 +240,7 @@ bifactorModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 For the WAIS we could also come up with a psychometric network model, in line with the mutualism model of van der Maas et al. (2006), for example.
 
-Let's extracted one from the US sample data.
+Let's extract one from the US sample data.
 
 ## Exploratory Network Analysis <a name="Extract"></a>
 
@@ -263,8 +263,9 @@ prunedModel <- saturatedModel_US %>% prune( alpha = 0.01, recursive = TRUE )
 finalModel  <- prunedModel %>% stepup
 ```
 
-The 'skeleton' or 'adjacency matrix' can be considered 'the network', which we aim to be fit (truly confirmatory) in the Hungarian sample. 
-It contains which edges are present (1) and which are absent (0).
+The 'skeleton' or 'adjacency matrix' can be considered 'the network. The adjacency matrix contains the information which edges are present (1) and which are absent (0).
+
+Here the aim is to fit the network (truly confirmatory) in the Hungarian sample in order to test if the network extracted from the US sample replicates.
 
 ```{r}
 adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
@@ -272,13 +273,13 @@ adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
 
 # Fit the models, obtain their fit statistics, and compare these statistics <a name="Fits"></a>
 
-Now we have established how all our models look like, let's fit them (in a different sample than we extracted the network from).
+Now we have established how all our models look like, let's fit them.
 
 ## Explicit Saturated Model
 
 Or wait, we can first establish a saturated model (explicitly), in which all other models are nested.
 
-We can parameterisize it as the partial correlation matrix. This shows factor models are actually nested within network models. Paths are constrained by the mediating effects of the latent variables. 
+We can parameterisize it as the partial correlation matrix. This shows factor models are actually nested within network models. In factor models the 'edges'/paths are constrained by the mediating latent variables. 
 
 ```{r}
 saturatedModel    <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
@@ -302,7 +303,7 @@ results_bifactorModel    <- bifactorModel    %>% runmodel
 results_gModel           <- gModel           %>% runmodel
 ```
 
-To obtain their fit statistics, one can use the function fit() and/or function compare()
+To obtain their fit statistics, one can use the function fit() and/or function compare().
 
 ```{r}
 fit( results_measurementModel )
