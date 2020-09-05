@@ -1,5 +1,7 @@
 # How to Compare Latent Factor Models and Psychometric Network Models, a Tutorial
 
+Kees-Jan Kan
+
 ## Table of content
 - [Introduction](#Intro)
 - [Preparation](#Preparation)
@@ -16,12 +18,13 @@
      - [Confirmatory Network Modeling](FitNetworkModel)
 - [Results](Results)
 - [Conclusion](#Conclusion)
+- [References](References)
  
 
 
 # Introduction <a name="Intro"></a>
 
-This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics.
+This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics (Epskamp, 2019).
 
 The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. In Memory of John Dennis McFarland. *Journal of Intelligence*.
 
@@ -218,6 +221,8 @@ Note that the bifactor model implies that:
 - none of the cognitive ability measures are unidimensional
 - *g* has direct indicators
      - this goes against *g* theory (Jensen, 1998), in which it is stated *g* itself is not a cognitive ability itself. 
+     
+See also Hood (2008) on the interpretation of the bifactor model.
 
 ![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel.jpg)
 
@@ -362,5 +367,23 @@ According to standard fit criteria (Schermelleh et al), we would conclude that t
 - The RMSEA, TLI, and CFI, for example, point at excellent fit absolute fit. 
 - In addition, it has the lowest AIC and BIC
      - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
-     - So if we had to choose between the network interpretation of general intelligence or g theory, we would favor the network interpretation
 
+If we had to choose between the network interpretation of general intelligence or *g* theory, we would favor the network interpretation.
+
+# References <a name="References"></a>
+
+Epskamp, S. (2019). *Psychonetrics*. R package. version 0.7.1.
+
+Hood, S. B. (2008). *Latent variable realism in psychometrics.* Indiana University Press
+
+Jensen, A. R. (1998). *The g factor: The science of mental ability*. Westport, CT: Praeger.
+
+Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (Submitted). How to Compare Latent Factor Models and Psychometric Network Models. In Memory of John Dennis McFarland. *Journal of Intelligence*.
+
+Kan, K. J., van der Maas, H. L., & Levine, S. Z. (2019). Extending psychometric network analysis: Empirical evidence against g in favor of mutualism?. *Intelligence, 73*, 52-62.
+
+McFarland, D. (2020). The Effects of Using Partial or Uncorrected Correlation Matrices When Comparing Network and Latent Variable Models. *Journal of Intelligence, 8(1)*, 7.
+
+Schmank, C. J., Goring, S. A., Kovacs, K., & Conway, A. R. (2019). Psychometric network analysis of the Hungarian WAIS. *Journal of Intelligence, 7(3)*, 21.
+
+van Der Maas, H. L., Dolan, C. V., Grasman, R. P., Wicherts, J. M., Huizenga, H. M., & Raijmakers, M. E. (2006). A dynamical model of general intelligence: the positive manifold of intelligence by mutualism. *Psychological review, 113(4)*, 842.
