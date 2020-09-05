@@ -24,7 +24,7 @@ Kees-Jan Kan
 
 # Introduction <a name="Intro"></a>
 
-This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics (Epskamp, 2019).
+This is a short tutorial on how to compare latent factor models and psychometric network models using the R package Psychonetrics (Epskamp, 2019). For the installation of this package, see http://psychonetrics.org/installation/.
 
 The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. In Memory of John Dennis McFarland. *Journal of Intelligence*.
 
