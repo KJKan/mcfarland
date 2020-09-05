@@ -93,7 +93,7 @@ These are:
 - Cancellation (CA)
 - Picture Completion (PC)
 
-So 16 in total. Let's store that information.
+So 15 in total. Let's store that information.
 
 ```{r}
 ny <- length( yvars ) 
