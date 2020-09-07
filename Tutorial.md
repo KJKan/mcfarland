@@ -31,7 +31,7 @@ The tutorial accompanies the paper Kan, K.J., de Jonge, H., van der Maas, H.L.J.
 We illustrate here how
 -  A network can be extracted from the data from one sample and fitted on the data of another sample. 
      - In other words, we provide the means how to test if a given network *replicates*
-- The fit statistics of that network can be compared witj the fit statistics of (various) factor models. 
+- The fit statistics of that network can be compared with the fit statistics of (various) factor models. 
 
 The factor models being fitted are those that were considered by McFarland (2020):
 - A measurement model                                           
@@ -265,7 +265,7 @@ We take α = 0.01.
 prunedModel <- saturatedModel_US %>% prune( alpha = 0.01, recursive = TRUE )
 
 # aim for further improvement of the model
-finalModel  <- prunedModel %>% stepup
+finalModel  <- prunedModel %>% stepup # # or modelsearch( prunedModel ) # more recent method, but slower
 ```
 
 The 'skeleton' or 'adjacency matrix' can be considered 'the network. The adjacency matrix contains the information which edges are present (1) and which are absent (0).
