@@ -370,7 +370,7 @@ Here is a collection of the results:
 
 # Conclusion <a name="Conclusion"></a>
 
-According to standard fit criteria (Schermelleh et al), we would conclude that the network model fits best:
+According to standard fit criteria (Schermelleh-Moosbrugger, Moosbrugger, & Müller, 2003), we would conclude that the network model fits best:
 - The RMSEA, TLI, and CFI, for example, point at excellent fit absolute fit. 
 - In addition, it has the lowest AIC and BIC
      - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
@@ -390,6 +390,8 @@ Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (Subm
 Kan, K. J., van der Maas, H. L., & Levine, S. Z. (2019). Extending psychometric network analysis: Empirical evidence against g in favor of mutualism?. *Intelligence, 73*, 52-62.
 
 McFarland, D. (2020). The Effects of Using Partial or Uncorrected Correlation Matrices When Comparing Network and Latent Variable Models. *Journal of Intelligence, 8(1)*, 7.
+
+Schermelleh-Engel, K., Moosbrugger, H., & Müller, H. (2003). Evaluating the fit of structural equation models: Tests of significance and descriptive goodness-of-fit measures. *Methods of psychological research online, 8(2)*, 23-74.
 
 Schmank, C. J., Goring, S. A., Kovacs, K., & Conway, A. R. (2019). Psychometric network analysis of the Hungarian WAIS. *Journal of Intelligence, 7(3)*, 21.
 
