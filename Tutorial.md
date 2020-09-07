@@ -60,7 +60,7 @@ We also need our data, the US and Hungarian WAIS correlation matrices, so let's 
 
 ```{r}
 load( url ( "https://github.com/KJKan/mcfarland/blob/master/WAIS_Hungary.Rdata?raw=true" ) )
-load( url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" ) )
+load( url ( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" ) )
 ```
 
 According to the WAIS manuals, these are the sample sizes:
