@@ -13,10 +13,10 @@ Kees-Jan Kan
 - [Psychometric Network Model](#Network)
      - [Exploratory Network Analysis](#Extract)
 - [Fit the models (confirmatively) and compare the fit statistics](#Fits)
-     - [Explicit Saturated Model](SaturatedModel)
-     - [Confirmatory Factor Modeling](FitFactorModels)
-     - [Confirmatory Network Modeling](FitNetworkModel)
-- [Results](Results)
+     - [Explicit Saturated Model](#SaturatedModel)
+     - [Confirmatory Factor Modeling](#FitFactorModels)
+     - [Confirmatory Network Modeling](#FitNetworkModel)
+- [Results](#Results)
 - [Conclusion](#Conclusion)
 - [References](References)
  
@@ -359,7 +359,15 @@ qgraph( getmatrix( nwModel, "omega" ),
 
 Here is a collection of the results:
 
-HERE A TABLE WITH THE RESULTS
+		
+Results of the model comparison in Pychonetrics. Note: Preferred model in bold.
+Model	χ2 (df)	P	CFI	TLI	RMSEA [CI90]	AIC	BIC
+Network	129.96 (52)	<0.001	0.99	0.99	0.037 [0.29-0.45]	36848.56	37189.51
+Bifactor	263.41 (75)	<0.001	0.98	0.97	0.048 [0.41-0.54]	36966.01	37266.85
+Measurement	369.47 (82)	<0.001	0.96	0.97	0.056 [0.50-0.62]	37058.07	37323.81
+Hierarchical g	376.56 (84)	<0.001	0.97	0.96	0.056 [0.50-0.62]	37061.16	37316.87
+		
+
 
 # Conclusion <a name="Conclusion"></a>
 
