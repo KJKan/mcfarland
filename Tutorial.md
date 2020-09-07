@@ -18,7 +18,7 @@ Kees-Jan Kan
      - [Confirmatory Network Modeling](#FitNetworkModel)
 - [Results](#Results)
 - [Conclusion](#Conclusion)
-- [References](References)
+- [References](#References)
  
 
 
@@ -280,7 +280,7 @@ adjacency <- 1*( getmatrix( finalModel, "omega" ) !=0 )
 
 Now we have established how all our models look like, let's fit them.
 
-## Explicit Saturated Model
+## Explicit Saturated Model  <a name="SaturatedModel"></a>
 
 Or wait, we can first establish a saturated model (explicitly), in which all other models are nested.
 
@@ -298,7 +298,7 @@ In psychonetrics, this is how we would 'run' a model, the saturated model in thi
 results_saturatedModel   <- saturatedModel   %>% runmodel
 ```
 
-## Confirmatory Factor Modeling
+## Confirmatory Factor Modeling  <a name="FitFactorModels"></a>
 
 Let's run all factor models first.
 
@@ -324,7 +324,7 @@ compare( saturated   = results_saturatedModel,
 
 ```
 
-## Confirmatory Network Modeling
+## Confirmatory Network Modeling  <a name="FitNetworkModel"></a>
 
 Now let's do the same for the network model. (Recall that we stored the network model in the object 'adjacency'). 
 
@@ -359,13 +359,12 @@ qgraph( getmatrix( nwModel, "omega" ),
 
 Here is a collection of the results:
 
-		
-Results of the model comparison in Pychonetrics. Note: Preferred model in bold.
-Model	χ2 (df)	P	CFI	TLI	RMSEA [CI90]	AIC	BIC
-Network	129.96 (52)	<0.001	0.99	0.99	0.037 [0.29-0.45]	36848.56	37189.51
-Bifactor	263.41 (75)	<0.001	0.98	0.97	0.048 [0.41-0.54]	36966.01	37266.85
-Measurement	369.47 (82)	<0.001	0.96	0.97	0.056 [0.50-0.62]	37058.07	37323.81
-Hierarchical g	376.56 (84)	<0.001	0.97	0.96	0.056 [0.50-0.62]	37061.16	37316.87
+| Model          |  χ2 (df)    | *P*-value   |	CFI |TLI   |	RMSEA [CI90]   | AIC      |    BIC   |
+|----------------|------------:|------------:|-----:|-----:|------------------:|---------:|----------|
+| Network        | 129.96 (52) | <0.001	     | 0.99 | 0.99 | 0.037 [0.29-0.45] | 36848.56 | 37189.51 |
+| Bifactor       | 263.41 (75) | <0.001	     | 0.98 | 0.97 | 0.048 [0.41-0.54] | 36966.01 | 37266.85 |
+| Measurement    | 369.47 (82) | <0.001	     | 0.96 | 0.97 | 0.056 [0.50-0.62] | 37058.07 | 37323.81 |
+| Hierarchical g | 376.56 (84) | <0.001	     | 0.97 | 0.96 | 0.056 [0.50-0.62] | 37061.16 | 37316.87 |
 		
 
 
