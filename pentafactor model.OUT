@@ -1,0 +1,392 @@
+
+                                DATE:  9/17/2020
+                                  TIME:  9:31
+
+
+                          L I S R E L  10.2 (STUDENT)
+
+                                       BY
+
+                         Karl G. Jöreskog & Dag Sörbom
+
+
+
+                    This program is published exclusively by
+                    Scientific Software International, Inc.
+                         http://www.ssicentral.com
+
+        Copyright by Scientific Software International, Inc., 1981-2019
+          Use of this program is subject to the terms specified in the
+                        Universal Copyright Convention.
+
+ The following lines were read from file C:\Users\kkan1\Desktop\Sort out\pentafactor model.spl:
+
+ McFarland's pentafactor model
+ DA NI=15 NO=1112 NG=1 MA=KM
+ LA
+ BD SI DS MR VC AR SS VP IN CD LN FW CO CA PC
+ KM FU
+ 1.0000000 0.5692764 0.4822107 0.6182575 0.4929626 0.5779850 0.4825817 0.6999220 0.5512431 0.4898774 0.4258000 0.6328158 0.5128114 0.4066939 0.5504953
+ 0.5692764 1.0000000 0.5166730 0.5945016 0.7266256 0.5515748 0.3835310 0.5417668 0.7206883 0.4825587 0.4481321 0.5962594 0.7208477 0.3440686 0.5027016
+ 0.4822107 0.5166730 1.0000000 0.5118472 0.5274430 0.6170586 0.4498503 0.4853285 0.5349492 0.4880641 0.5722512 0.5119835 0.4670913 0.4000642 0.4516746
+ 0.6182575 0.5945016 0.5118472 1.0000000 0.5492341 0.5651709 0.4350982 0.6052350 0.5772691 0.4979167 0.4080002 0.6411143 0.5468249 0.3517217 0.4995423
+ 0.4929626 0.7266256 0.5274430 0.5492341 1.0000000 0.5185992 0.3902186 0.4941389 0.7456008 0.4611438 0.4095050 0.5589989 0.7282060 0.3115158 0.4411280
+ 0.5779850 0.5515748 0.6170586 0.5651709 0.5185992 1.0000000 0.4242495 0.5861336 0.6014744 0.4191522 0.5220732 0.6596132 0.5172648 0.3683189 0.5144743
+ 0.4825817 0.3835310 0.4498503 0.4350982 0.3902186 0.4242495 1.0000000 0.4536546 0.3855383 0.6688119 0.3951781 0.4505149 0.3605239 0.5441796 0.4090438
+ 0.6999220 0.5417668 0.4853285 0.6052350 0.4941389 0.5861336 0.4536546 1.0000000 0.5247362 0.4403104 0.4061701 0.6777566 0.4785605 0.3876413 0.5591918
+ 0.5512431 0.7206883 0.5349492 0.5772691 0.7456008 0.6014744 0.3855383 0.5247362 1.0000000 0.4908153 0.4556314 0.5907450 0.7059060 0.3417985 0.5055332
+ 0.4898774 0.4825587 0.4880641 0.4979167 0.4611438 0.4191522 0.6688119 0.4403104 0.4908153 1.0000000 0.4365638 0.4670181 0.4394942 0.4913500 0.4329386
+ 0.4258000 0.4481321 0.5722512 0.4080002 0.4095050 0.5220732 0.3951781 0.4061701 0.4556314 0.4365638 1.0000000 0.4345667 0.3991865 0.3086978 0.3821793
+ 0.6328158 0.5962594 0.5119835 0.6411143 0.5589989 0.6596132 0.4505149 0.6777566 0.5907450 0.4670181 0.4345667 1.0000000 0.5652383 0.3501045 0.5685076
+ 0.5128114 0.7208477 0.4670913 0.5468249 0.7282060 0.5172648 0.3605239 0.4785605 0.7059060 0.4394942 0.3991865 0.5652383 1.0000000 0.3011208 0.4348967
+ 0.4066939 0.3440686 0.4000642 0.3517217 0.3115158 0.3683189 0.5441796 0.3876413 0.3417985 0.4913500 0.3086978 0.3501045 0.3011208 1.0000000 0.3553095
+ 0.5504953 0.5027016 0.4516746 0.4995423 0.4411280 0.5144743 0.4090438 0.5591918 0.5055332 0.4329386 0.3821793 0.5685076 0.4348967 0.3553095 1.0000000
+ MO NY=15 NE=8 LY=fu,fr PS=di,fi TE=di,fr
+ LE
+ V P WM S g1 g2 g3 g4
+ PA LY
+ 1 0 0 0 1 1 1 1
+ 0 1 0 0 1 1 1 1
+ 0 0 1 0 1 1 1 1
+ 1 0 0 0 1 1 1 1
+ 0 1 0 0 1 1 1 1
+ 0 0 1 0 1 1 1 1
+ 0 0 0 1 1 1 1 1
+ 1 0 0 0 1 1 1 1
+ 0 1 0 0 1 1 1 1
+ 0 0 0 1 1 1 1 1
+ 0 0 1 0 1 1 1 1
+ 0 0 1 0 1 1 1 1
+ 0 1 0 0 1 1 1 1
+ 0 0 0 1 1 1 1 1
+ 1 0 0 0 1 1 1 1
+ MA PS
+ 1 1 1 1 1 1 1 1
+ PD
+ OU
+
+ McFarland's pentafactor model                                                  
+
+                           Number of Input Variables 15
+                           Number of Y - Variables   15
+                           Number of X - Variables    0
+                           Number of ETA - Variables  8
+                           Number of KSI - Variables  0
+                           Number of Observations  1112
+
+ McFarland's pentafactor model                                                  
+
+         Correlation Matrix      
+
+                  BD         SI         DS         MR         VC         AR   
+            --------   --------   --------   --------   --------   --------
+       BD      1.000
+       SI      0.569      1.000
+       DS      0.482      0.517      1.000
+       MR      0.618      0.595      0.512      1.000
+       VC      0.493      0.727      0.527      0.549      1.000
+       AR      0.578      0.552      0.617      0.565      0.519      1.000
+       SS      0.483      0.384      0.450      0.435      0.390      0.424
+       VP      0.700      0.542      0.485      0.605      0.494      0.586
+       IN      0.551      0.721      0.535      0.577      0.746      0.601
+       CD      0.490      0.483      0.488      0.498      0.461      0.419
+       LN      0.426      0.448      0.572      0.408      0.410      0.522
+       FW      0.633      0.596      0.512      0.641      0.559      0.660
+       CO      0.513      0.721      0.467      0.547      0.728      0.517
+       CA      0.407      0.344      0.400      0.352      0.312      0.368
+       PC      0.550      0.503      0.452      0.500      0.441      0.514
+
+         Correlation Matrix      
+
+                  SS         VP         IN         CD         LN         FW   
+            --------   --------   --------   --------   --------   --------
+       SS      1.000
+       VP      0.454      1.000
+       IN      0.386      0.525      1.000
+       CD      0.669      0.440      0.491      1.000
+       LN      0.395      0.406      0.456      0.437      1.000
+       FW      0.451      0.678      0.591      0.467      0.435      1.000
+       CO      0.361      0.479      0.706      0.439      0.399      0.565
+       CA      0.544      0.388      0.342      0.491      0.309      0.350
+       PC      0.409      0.559      0.506      0.433      0.382      0.569
+
+         Correlation Matrix      
+
+                  CO         CA         PC   
+            --------   --------   --------
+       CO      1.000
+       CA      0.301      1.000
+       PC      0.435      0.355      1.000
+
+ Total Variance = 15.000 Generalized Variance = 0.639993D-04                            
+
+ Largest Eigenvalue = 8.080 Smallest Eigenvalue = 0.223                                   
+
+ Condition Number = 6.023
+
+
+ McFarland's pentafactor model                                                  
+
+ Parameter Specifications
+
+         LAMBDA-Y    
+
+                   V          P         WM          S         g1         g2
+            --------   --------   --------   --------   --------   --------
+       BD          1          0          0          0          2          3
+       SI          0          6          0          0          7          8
+       DS          0          0         11          0         12         13
+       MR         16          0          0          0         17         18
+       VC          0         21          0          0         22         23
+       AR          0          0         26          0         27         28
+       SS          0          0          0         31         32         33
+       VP         36          0          0          0         37         38
+       IN          0         41          0          0         42         43
+       CD          0          0          0         46         47         48
+       LN          0          0         51          0         52         53
+       FW          0          0         56          0         57         58
+       CO          0         61          0          0         62         63
+       CA          0          0          0         66         67         68
+       PC         71          0          0          0         72         73
+
+         LAMBDA-Y    
+
+                  g3         g4
+            --------   --------
+       BD          4          5
+       SI          9         10
+       DS         14         15
+       MR         19         20
+       VC         24         25
+       AR         29         30
+       SS         34         35
+       VP         39         40
+       IN         44         45
+       CD         49         50
+       LN         54         55
+       FW         59         60
+       CO         64         65
+       CA         69         70
+       PC         74         75
+
+         THETA-EPS   
+
+                  BD         SI         DS         MR         VC         AR
+            --------   --------   --------   --------   --------   --------
+                  76         77         78         79         80         81
+
+         THETA-EPS   
+
+                  SS         VP         IN         CD         LN         FW
+            --------   --------   --------   --------   --------   --------
+                  82         83         84         85         86         87
+
+         THETA-EPS   
+
+                  CO         CA         PC
+            --------   --------   --------
+                  88         89         90
+ 
+
+
+ McFarland's pentafactor model                                                  
+
+ Number of Iterations = 0           
+
+ LISREL Estimates (Maximum Likelihood)                           
+
+ W_A_R_N_I_N_G: LY 1_6 may not be identified.
+                Standard Errors, z-Values, Modification Indices,
+                and Standardized Residuals cannot be computed.
+
+         LAMBDA-Y    
+
+                   V          P         WM          S         g1         g2   
+            --------   --------   --------   --------   --------   --------
+       BD      0.500       - -        - -        - -       0.500      0.500
+ 
+       SI       - -       0.500       - -        - -       0.500      0.500
+ 
+       DS       - -        - -       0.500       - -       0.500      0.500
+ 
+       MR      0.500       - -        - -        - -       0.500      0.500
+ 
+       VC       - -       0.500       - -        - -       0.500      0.500
+ 
+       AR       - -        - -       0.500       - -       0.500      0.500
+ 
+       SS       - -        - -        - -       0.500      0.500      0.500
+ 
+       VP      0.500       - -        - -        - -       0.500      0.500
+ 
+       IN       - -       0.500       - -        - -       0.500      0.500
+ 
+       CD       - -        - -        - -       0.500      0.500      0.500
+ 
+       LN       - -        - -       0.500       - -       0.500      0.500
+ 
+       FW       - -        - -       0.500       - -       0.500      0.500
+ 
+       CO       - -       0.500       - -        - -       0.500      0.500
+ 
+       CA       - -        - -        - -       0.500      0.500      0.500
+ 
+       PC      0.500       - -        - -        - -       0.500      0.500
+ 
+
+         LAMBDA-Y    
+
+                  g3         g4   
+            --------   --------
+       BD      0.500      0.500
+ 
+       SI      0.500      0.500
+ 
+       DS      0.500      0.500
+ 
+       MR      0.500      0.500
+ 
+       VC      0.500      0.500
+ 
+       AR      0.500      0.500
+ 
+       SS      0.500      0.500
+ 
+       VP      0.500      0.500
+ 
+       IN      0.500      0.500
+ 
+       CD      0.500      0.500
+ 
+       LN      0.500      0.500
+ 
+       FW      0.500      0.500
+ 
+       CO      0.500      0.500
+ 
+       CA      0.500      0.500
+ 
+       PC      0.500      0.500
+ 
+
+ W_A_R_N_I_N_G: LAMBDA-Y does not have full column rank
+
+         Covariance Matrix of ETA                
+         Note: This matrix is diagonal.
+
+                   V          P         WM          S         g1         g2   
+            --------   --------   --------   --------   --------   --------
+               1.000      1.000      1.000      1.000      1.000      1.000
+
+         Covariance Matrix of ETA                
+         Note: This matrix is diagonal.
+
+                  g3         g4   
+            --------   --------
+               1.000      1.000
+
+         PSI         
+         Note: This matrix is diagonal.
+
+                   V          P         WM          S         g1         g2   
+            --------   --------   --------   --------   --------   --------
+               1.000      1.000      1.000      1.000      1.000      1.000
+ 
+
+         PSI         
+         Note: This matrix is diagonal.
+
+                  g3         g4   
+            --------   --------
+               1.000      1.000
+ 
+
+         THETA-EPS   
+
+                  BD         SI         DS         MR         VC         AR   
+            --------   --------   --------   --------   --------   --------
+               1.000      1.000      1.000      1.000      1.000      1.000
+ 
+
+         THETA-EPS   
+
+                  SS         VP         IN         CD         LN         FW   
+            --------   --------   --------   --------   --------   --------
+               1.000      1.000      1.000      1.000      1.000      1.000
+ 
+
+         THETA-EPS   
+
+                  CO         CA         PC   
+            --------   --------   --------
+               1.000      1.000      1.000
+ 
+
+         Squared Multiple Correlations for Y - Variables         
+
+                  BD         SI         DS         MR         VC         AR   
+            --------   --------   --------   --------   --------   --------
+               0.556      0.556      0.556      0.556      0.556      0.556
+
+         Squared Multiple Correlations for Y - Variables         
+
+                  SS         VP         IN         CD         LN         FW   
+            --------   --------   --------   --------   --------   --------
+               0.556      0.556      0.556      0.556      0.556      0.556
+
+         Squared Multiple Correlations for Y - Variables         
+
+                  CO         CA         PC   
+            --------   --------   --------
+               0.556      0.556      0.556
+
+                                 Log-likelihood Values
+
+                        Estimated Model          Saturated Model
+                        ---------------          ---------------
+ Number of free parameters(t)        90                      120
+ -2ln(L)                      12191.661                 5941.817
+ AIC (Akaike, 1974)*          12371.661                 6181.817
+ BIC (Schwarz, 1978)*         12822.914                 6783.487
+
+*LISREL uses AIC= 2t - 2ln(L) and BIC = tln(N)- 2ln(L)
+
+
+                           Goodness-of-Fit Statistics
+
+ Degrees of Freedom for (C1)-(C2)                      30
+ Maximum Likelihood Ratio Chi-Square (C1)              6249.844 (P = 0.0000)
+ Browne's (1984) ADF Chi-Square (C2_NT)                773.285 (P = 0.0000)
+ 
+ Estimated Non-centrality Parameter (NCP)              6219.844
+ 90 Percent Confidence Interval for NCP                (5963.539 ; 6483.304)
+ 
+ Minimum Fit Function Value                            5.620
+ Population Discrepancy Function Value (F0)            5.593
+ 90 Percent Confidence Interval for F0                 (5.363 ; 5.830)
+ Root Mean Square Error of Approximation (RMSEA)       0.432
+ 90 Percent Confidence Interval for RMSEA              (0.423 ; 0.441)
+ P-Value for Test of Close Fit (RMSEA < 0.05)          0.000
+ 
+ Expected Cross-Validation Index (ECVI)                5.782
+ 90 Percent Confidence Interval for ECVI               (5.552 ; 6.019)
+ ECVI for Saturated Model                              0.216
+ ECVI for Independence Model                           9.684
+ 
+ Chi-Square for Independence Model (105 df)       10738.183
+ 
+ Normed Fit Index (NFI)                                0.418
+ Parsimony Normed Fit Index (PNFI)                     0.119
+ Comparative Fit Index (CFI)                           0.415
+ Incremental Fit Index (IFI)                           0.419
+ 
+ Critical N (CN)                                      10.047
+ 
+ 
+ Root Mean Square Residual (RMR)                       0.683
+ Standardized RMR                                      0.304
+ Goodness of Fit Index (GFI)                           2.100
+ Adjusted Goodness of Fit Index (AGFI)                 5.400
+ Parsimony Goodness of Fit Index (PGFI)                0.525
+
+                           Time used 0.125 seconds
