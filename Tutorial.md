@@ -371,7 +371,7 @@ Here is a collection of the results:
 # Conclusion <a name="Conclusion"></a>
 
 According to standard fit criteria (Schermelleh-Moosbrugger, Moosbrugger, & Müller, 2003), we would conclude that the network model fits best:
-- The RMSEA, TLI, and CFI, for example, point at excellent fit absolute fit. 
+- The RMSEA, TLI, and CFI, for example, point at excellent absolute fit. 
 - In addition, it has the lowest AIC and BIC
      - The confidence intervals of the RSMSEA of the network model and *g* theoretical model do not overlap
 
