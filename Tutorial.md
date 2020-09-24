@@ -395,7 +395,7 @@ Schermelleh-Engel, K., Moosbrugger, H., & Müller, H. (2003). Evaluating the fit
 
 Schmank, C. J., Goring, S. A., Kovacs, K., & Conway, A. R. (2019). Psychometric network analysis of the Hungarian WAIS. *Journal of Intelligence, 7(3)*, 21.
 
-van Der Maas, H. L., Dolan, C. V., Grasman, R. P., Wicherts, J. M., Huizenga, H. M., & Raijmakers, M. E. (2006). A dynamical model of general intelligence: the positive manifold of intelligence by mutualism. *Psychological review, 113(4)*, 842.
+van der Maas, H. L., Dolan, C. V., Grasman, R. P., Wicherts, J. M., Huizenga, H. M., & Raijmakers, M. E. (2006). A dynamical model of general intelligence: the positive manifold of intelligence by mutualism. *Psychological review, 113(4)*, 842.
 
 Wechsler, D. (2008). *Wechsler adult intelligence Scale–Fourth edition (WAIS–IV)*. San Antonio, TX: The Psychological Corporation.
 
