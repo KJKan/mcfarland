@@ -16,7 +16,7 @@ The factor models that are fitted are those that were considered by [McFarland (
 
 The data concern WAIS-IV US validation sample data and WAIS-IV Hungary validation sample data. 
 
-# References
+## References
 
 [Epskamp, Sacha. 2020b. Psychonetrics: Structural Equation Modeling and Confirmatory Network Analysis. R Package Version 0.7.1.](https://cran.r-project.org/web/packages/psychonetrics/psychonetrics.pdf)
 
