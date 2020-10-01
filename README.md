@@ -9,7 +9,7 @@ Our tutorial illustrates how
      - in other words, how to test if a given network *replicates*
 - The fit statistics of that network can be compared with the fit statistics of (various) factor models. 
 
-The factor models that are fitted are those that were considered by McFarland (2020):
+The factor models that are fitted are those that were considered by [McFarland (2020)](https://www.mdpi.com/2079-3200/8/1/7/htm):
 - A measurement model                                           
 - A (second order) g model                                                    
 - A bifactor model                                                       
