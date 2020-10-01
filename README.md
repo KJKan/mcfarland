@@ -4,7 +4,7 @@ We here show how to compare latent factor models and psychometric network models
 
 The material here accompanies the paper [Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. *Journal of Intelligence*](https://github.com/KJKan/mcfarland/blob/master/jintelligence-844295.pdf).
 
-Our tutorial illustrates how
+Our [tutorial](https://github.com/KJKan/mcfarland/blob/master/Tutorial.md) illustrates how
 -  A network can be extracted from the data from one sample and fitted on the data of another sample. 
      - in other words, how to test if a given network *replicates*
 - The fit statistics of that network can be compared with the fit statistics of (various) factor models. 
