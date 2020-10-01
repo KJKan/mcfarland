@@ -18,6 +18,6 @@ The data concern WAIS-IV US validation sample data and WAIS-IV Hungary validatio
 
 # References
 
-Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. *Journal of Intelligence*.
+[Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. *Journal of Intelligence*.](https://github.com/KJKan/mcfarland/blob/master/jintelligence-844295.pdf)
 
-McFarland, D. J. (2020). The Effects of Using Partial or Uncorrected Correlation Matrices When Comparing Network and Latent Variable Models. *Journal of Intelligence, 8*(1), 7.
+[McFarland, D. J. (2020). The Effects of Using Partial or Uncorrected Correlation Matrices When Comparing Network and Latent Variable Models. *Journal of Intelligence, 8*(1), 7.](https://www.mdpi.com/2079-3200/8/1/7/htm)
