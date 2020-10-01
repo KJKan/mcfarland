@@ -1,6 +1,6 @@
 # Readme
 
-We here show how to compare latent factor models and psychometric network models using the R package Psychonetrics (Epskamp, 2019). 
+We here show how to compare latent factor models and psychometric network models using the [R package Psychonetrics (Epskamp, 2019)](https://cran.r-project.org/web/packages/psychonetrics/psychonetrics.pdf). 
 
 The material here accompanies the paper [Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. *Journal of Intelligence*](https://github.com/KJKan/mcfarland/blob/master/jintelligence-844295.pdf).
 
@@ -17,6 +17,8 @@ The factor models that are fitted are those that were considered by McFarland (2
 The data concern WAIS-IV US validation sample data and WAIS-IV Hungary validation sample data. 
 
 # References
+
+[Epskamp, Sacha. 2020b. Psychonetrics: Structural Equation Modeling and Confirmatory Network Analysis. R Package Version 0.7.1.](https://cran.r-project.org/web/packages/psychonetrics/psychonetrics.pdf)
 
 [Kan, K.J., de Jonge, H., van der Maas, H.L.J., Levine, S.Z., & Epskamp, S. (2020). How to Compare Latent Factor Models and Psychometric Network Models. *Journal of Intelligence*.](https://github.com/KJKan/mcfarland/blob/master/jintelligence-844295.pdf)
 
