@@ -335,7 +335,7 @@ nwModel <- ggm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 results_nwModel <- nwModel %>% runmodel
 
-fit( results_gModel )
+fit( results_nwModel )
 
 compare( saturated   = results_saturatedModel,
          network     = results_nwModel )
