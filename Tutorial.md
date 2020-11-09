@@ -194,7 +194,7 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 
 According to *g* theory the measured latent variables correlate positively because they all depend on a common source of variance, that is '*g*'. In the statistical model, *g* is represented by the most general factor.   
 
-![](https://raw.githubusercontent.com/KJKan/mcfarland/master/SecondOrdergModel.jpg)
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/SecondOrdergModel_.jpg)
 
 Let's build this *g* model (which we termed the 'second order g factor model'). 
 The matrix beta defines how the latent variables in the measurement model are influenced by *g*.
