@@ -224,7 +224,7 @@ Note that the bifactor model implies that:
      
 See also Hood (2008) on the interpretation of the bifactor model.
 
-![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel.jpg)
+![](https://raw.githubusercontent.com/KJKan/mcfarland/master/BifactorModel_.jpg)
 
 However, the model can also be considered simply as a means to decompose the variance of a variable into variance components. In that sense, there is nothing wrong with it. 
 
