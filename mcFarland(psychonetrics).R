@@ -30,9 +30,9 @@ library( "dplyr"         )
 # ------------- Read in the data
 
 # WAIS correlation matrix in the US standardization sample
-load( url ( "https://github.com/KJKan/mcfarland/blob/master/WAIS_Hungary.Rdata?raw=true" ) )
+load( url ( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" ) )
 # WAIS correlation matrix in the Hungarian standardization sample
-load( url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_US.Rdata?raw=true" ) )
+load( url( "https://github.com/KJKan/mcfarland/blob/master/WAIS_Hungary.Rdata?raw=true" ) )
 
 # sample sizes
 n_US      <- 1800 
