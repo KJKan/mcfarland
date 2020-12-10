@@ -105,7 +105,7 @@ measurementModel <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary,
 # this model explains the covariance structure among the measured constructs
 # by adding one more latent variable, g
 lambda_g               <- cbind( lambda_measurement, g = 0 )
-beta_g                 <- cbind( matrix( 0, ne + 1, ne + 1 ) ) 
+beta_g                 <- matrix( 0, ne + 1, ne + 1 )  
 beta_g[ 1:ne, ne + 1 ] <- 1
 
 gModel    <- lvm( covs = ( n_Hungary - 1 )/n_Hungary*WAIS_Hungary, 
